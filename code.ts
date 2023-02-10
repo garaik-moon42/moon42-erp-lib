@@ -48,7 +48,7 @@ function NAME_OF_PROJECT(projectId: string):string|null {
     if (projectId !== null && projectId.match(pidRegex)) {
         const res = runSql_(
             `select P.mt_name from om_value_project P where P.om_object = '${projectId}'`,
-            (rs: GoogleAppsScript.JDBC.JdbcResultSet) => {}
+            (rs: GoogleAppsScript.JDBC.JdbcResultSet) => { return rs.getString(1); }
         );
         return res.length > 0 ? res[0] : null;
     }
